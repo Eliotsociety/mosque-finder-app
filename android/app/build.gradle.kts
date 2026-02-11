@@ -30,7 +30,8 @@ android {
         versionName = flutter.versionName
     }
 
-manifestPlaceholders = [MAPS_API_KEY: System.getenv('MAPS_API_KEY') ?: ""]
+// Update this line to use this exact syntax:
+        manifestPlaceholders["MAPS_API_KEY"] = System.getenv("MAPS_API_KEY") ?: ""
 
     buildTypes {
         release {
