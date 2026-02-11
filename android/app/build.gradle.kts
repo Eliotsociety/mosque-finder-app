@@ -6,13 +6,15 @@ plugins {
 }
 
 android {
-   namespace = "com.mosquefinder.mvp.mosque_finder"
+    namespace = "com.mosquefinder.mvp.mosque_finder"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+        // --- ADDED THIS LINE TO FIX NOTIFICATION ERROR ---
+        isCoreLibraryDesugaringEnabled = true
     }
 
     kotlinOptions {
@@ -21,18 +23,18 @@ android {
 
     defaultConfig {
         applicationId = "com.mosquefinder.mvp.mosque_finder"
-        minSdk = 21 // Manually setting this often helps with Maps compatibility
+        // MinSdk 21 is required for both Google Maps and Local Notifications
+        minSdk = 21 
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
 
-        // ADD THIS LINE FOR YOUR GOOGLE MAPS KEY
+        // Google Maps API Key Placeholder
         manifestPlaceholders["MAPS_API_KEY"] = System.getenv("MAPS_API_KEY") ?: "AIzaSyCdtq2WitrxXh_oH5FTMAv4-P7zOJrAOmA"
     }
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.getByName("debug")
         }
@@ -41,4 +43,9 @@ android {
 
 flutter {
     source = "../.."
+}
+
+// --- ADDED THIS BLOCK AT THE BOTTOM ---
+dependencies {
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
 }
