@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.mosquefinder.mvp.mosque_finder"
+   namespace = "com.mosquefinder.mvp.mosque_finder"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -20,18 +20,15 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.mosquefinder.mvp.mosque_finder"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
+        minSdk = 21 // Manually setting this often helps with Maps compatibility
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
-    }
 
-// Update this line to use this exact syntax:
-        manifestPlaceholders["MAPS_API_KEY"] = System.getenv("MAPS_API_KEY") ?: ""
+        // ADD THIS LINE FOR YOUR GOOGLE MAPS KEY
+        manifestPlaceholders["MAPS_API_KEY"] = System.getenv("MAPS_API_KEY") ?: "AIzaSyCdtq2WitrxXh_oH5FTMAv4-P7zOJrAOmA"
+    }
 
     buildTypes {
         release {
